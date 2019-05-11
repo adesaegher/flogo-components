@@ -96,7 +96,7 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
         }
 
 	// Download the file to disk
-        err = minioClient.FGetObject(s3BucketName, s3Location, directory), minio.GetObjectOptions{})
+        err = minioClient.FGetObject(s3BucketName, s3Location, directory, minio.GetObjectOptions{})
 	if err != nil {
 		return err
 	}
