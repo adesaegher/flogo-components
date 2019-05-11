@@ -2,7 +2,6 @@
 package minios3
 
 import (
-	"os"
 	"path/filepath"
 
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
