@@ -3,7 +3,6 @@ package minios3
 
 import (
 	"path/filepath"
-
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/minio/minio-go"
@@ -97,7 +96,7 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
         }
 
 	// Download the file to disk
-        err = minioClient.FGetObject(s3BucketName, s3Location, filepath.Join(directory, s3Location), minio.GetObjectOptions{})
+        err = minioClient.FGetObject(s3BucketName, s3Location, directory), minio.GetObjectOptions{})
 	if err != nil {
 		return err
 	}
