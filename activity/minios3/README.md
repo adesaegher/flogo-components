@@ -1,16 +1,16 @@
 # Amazon S3
 
-Upload or Download files from Amazon Simple Storage Service (S3)
+Upload or Download files from Minio Simple Storage Service (S3)
 
 
 ## Installation
 
 ```bash
-flogo install github.com/retgits/flogo-components/activity/amazons3
+flogo install github.com/adesaeher/flogo-components/activity/minios3
 ```
 Link for flogo web:
 ```
-https://github.com/retgits/flogo-components/activity/amazons3
+https://github.com/adesaegher/flogo-components/activity/minios3
 ```
 
 ## Schema
@@ -31,6 +31,11 @@ Inputs and Outputs:
             "required": true
         },
         {
+            "name": "s3Endpoint",
+            "type": "string",
+            "required": true
+        },
+        {
             "name": "awsAccessKeyID",
             "type": "string",
             "required": true
@@ -38,6 +43,11 @@ Inputs and Outputs:
         {
             "name": "awsSecretAccessKey",
             "type": "string",
+            "required": true
+        },
+        {
+            "name": "useSSl",
+            "type": "bool",
             "required": true
         },
         {
@@ -76,8 +86,10 @@ Inputs and Outputs:
 | Input              | Description    |
 |:-------------------|:---------------|
 | action             | The action you want to take, either `download`, `upload`, `delete`, or `copy` |
+| s3Endpoint         | Your Minio S3 Endpoint |
 | awsAccessKeyID     | Your AWS Access Key (only needed if you don't give your Lambda function rights to invoke S3 reads and puts) |
 | awsSecretAccessKey | Your AWS Secret Key (only needed if you don't give your Lambda function rights to invoke S3 reads and puts) |
+| useSSl             | Use SSl |
 | awsRegion          | The AWS region your S3 bucket is in |
 | s3BucketName       | The name of your S3 bucket |
 | s3Location         | The file location on S3, this should be a full path (like `/bla/temp.txt`) |

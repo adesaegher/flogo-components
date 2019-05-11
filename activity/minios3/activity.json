@@ -20,7 +20,7 @@
             "required": true
         },
         {
-            "name": "S3Endpoint",
+            "name": "s3Endpoint",
             "type": "string",
             "required": true
         },
@@ -33,6 +33,11 @@
             "name": "awsSecretAccessKey",
             "type": "string",
             "required": false
+        },
+        {
+            "name": "useSSl",
+            "type": "bool",
+            "required": true
         },
         {
             "name": "awsRegion",
