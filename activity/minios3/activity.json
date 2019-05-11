@@ -1,0 +1,67 @@
+{
+    "name": "minios3",
+    "type": "flogo:activity",
+    "ref": "github.com/adesaeher/flogo-components/activity/minios3",
+    "version": "0.3.0",
+    "title": "Minio S3",
+    "description": "Upload or Download files from Minio Simple Storage Service (S3)",
+    "author": "retgits",
+    "homepage": "https://github.com/adesaegher/flogo-components/tree/master/activity/minios3",
+    "inputs": [
+        {
+            "name": "action",
+            "type": "string",
+            "allowed": [
+                "download",
+                "upload",
+                "delete",
+                "copy"
+            ],
+            "required": true
+        },
+        {
+            "name": "S3Endpoint",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "awsAccessKeyID",
+            "type": "string",
+            "required": false
+        },
+        {
+            "name": "awsSecretAccessKey",
+            "type": "string",
+            "required": false
+        },
+        {
+            "name": "awsRegion",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "s3BucketName",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "s3Location",
+            "type": "string",
+            "required": true
+        },
+        {
+            "name": "localLocation",
+            "type": "string"
+        },
+        {
+            "name": "s3NewLocation",
+            "type": "string"
+        }
+    ],
+    "outputs": [
+        {
+            "name": "result",
+            "type": "string"
+        }
+    ]
+}
