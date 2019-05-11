@@ -131,7 +131,7 @@ func uploadFileToS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey
         }
 
 	// Upload the file
-	err = minioClient.FPutObject(s3BucketName, s3Location, localFile, minio.PutObjectOptions{});
+	_, err = minioClient.FPutObject(s3BucketName, s3Location, localFile, minio.PutObjectOptions{});
 	if err != nil {
 		return err
 	}
@@ -149,7 +149,7 @@ func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey s
 
 	// Prepare the copy object
         src := minio.NewSourceInfo(s3BucketName, s3BucketName, nil)
-        dst := minio.NewDestinationInfo(s3BucketName, s3NewLocation, nil, nil)
+        dst, err := minio.NewDestinationInfo(s3BucketName, s3NewLocation, nil, nil)
 
 	// Copy the object
 	err = minioClient.CopyObject(dst, src)
