@@ -97,12 +97,6 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
                 return err
         }
 
-	// Create a new temporary file
-	f, err := os.Create(filepath.Join(directory, s3Location))
-	if err != nil {
-		return err
-	}
-
 	// Download the file to disk
         err = minioClient.FGetObject(s3BucketName, s3Location, filepath.Join(directory, s3Location), minio.GetObjectOptions{})
 	if err != nil {
