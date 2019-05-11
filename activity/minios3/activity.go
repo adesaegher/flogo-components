@@ -70,13 +70,13 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	var s3err error
 	switch action {
 	case "download":
-		s3err = downloadFileFromS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion, localLocation, s3Location, s3BucketName)
+		s3err = downloadFileFromS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl, awsRegion, localLocation, s3Location, s3BucketName)
 	case "upload":
-		s3err = uploadFileToS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion, localLocation, s3Location, s3BucketName)
+		s3err = uploadFileToS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl, awsRegion, localLocation, s3Location, s3BucketName)
 	case "delete":
-		s3err = deleteFileFromS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion, s3Location, s3BucketName)
+		s3err = deleteFileFromS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl, awsRegion, s3Location, s3BucketName)
 	case "copy":
-		s3err = copyFileOnS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion, s3Location, s3BucketName, s3NewLocation)
+		s3err = copyFileOnS3(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl, awsRegion, s3Location, s3BucketName, s3NewLocation)
 	}
 	if s3err != nil {
 		// Set the output value in the context
@@ -91,9 +91,9 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 }
 
 // Function to download a file from an S3 bucket
-func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSSL bool, awsRegion string, directory string, s3Location string, s3BucketName string) error {
+func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSsl bool, awsRegion string, directory string, s3Location string, s3BucketName string) error {
 	// Create an instance of the Minio Client
-        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion)
+        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl)
         if err != nil {
                 return err
         }
@@ -105,7 +105,7 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
 	}
 
 	// Download the file to disk
-        _, err = minioClient.FGetObject(s3BucketName, objectName, f, minio.GetObjectOptions{})
+        _, err = minioClient.FGetObject(s3BucketName, filepath.Join(directory, s3Location), minio.GetObjectOptions{})
 	if err != nil {
 		return err
 	}
@@ -114,15 +114,15 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
 }
 
 // Function to delete a file from an S3 bucket
-func deleteFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSSL bool, awsRegion string, s3Location string, s3BucketName string) error {
+func deleteFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSsl bool, awsRegion string, s3Location string, s3BucketName string) error {
 	// Create an instance of the Minio Client
-        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion)
+        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl)
         if err != nil {
                 return err
         }
 
 	// Delete the file from S3
-	_, err := minioClient.RemoveObject(s3BucketName, s3Location)
+	_, err = minioClient.RemoveObject(s3BucketName, s3Location)
 	if err != nil {
 		return err
 	}
@@ -131,9 +131,9 @@ func deleteFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessK
 }
 
 // Function to upload a file from an S3 bucket
-func uploadFileToS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSSL bool, awsRegion string, localFile string, s3Location string, s3BucketName string) error {
+func uploadFileToS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSsl bool, awsRegion string, localFile string, s3Location string, s3BucketName string) error {
 	// Create an instance of the Minio Client
-        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion)
+        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl)
         if err != nil {
                 return err
         }
@@ -148,9 +148,9 @@ func uploadFileToS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey
 }
 
 // Function to copy a file in an S3 bucket
-func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSSL bool, awsRegion string, s3Location string, s3BucketName string, s3NewLocation string) error {
+func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey string, useSsl bool, awsRegion string, s3Location string, s3BucketName string, s3NewLocation string) error {
 	// Create an instance of the Minio Client
-        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSSL, awsRegion)
+        minioClient, err := minio.New(s3Endpoint, awsAccessKeyID, awsSecretAccessKey, useSsl)
         if err != nil {
                 return err
         }
