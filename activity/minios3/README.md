@@ -1,4 +1,4 @@
-# Amazon S3
+# Minio S3
 
 Upload or Download files from Minio Simple Storage Service (S3)
 
