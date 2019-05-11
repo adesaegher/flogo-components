@@ -122,7 +122,7 @@ func deleteFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessK
         }
 
 	// Delete the file from S3
-	_, err := err = minioClient.RemoveObject(s3BucketName, s3Location)
+	_, err := minioClient.RemoveObject(s3BucketName, s3Location)
 	if err != nil {
 		return err
 	}
@@ -156,7 +156,7 @@ func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey s
         }
 
 	// Prepare the copy object
-        src := minio.NewSourceInfo(s3BucketName, s3BucketName,, nil)
+        src := minio.NewSourceInfo(s3BucketName, s3BucketName, nil)
         dst, err := minio.NewDestinationInfo(s3BucketName, s3NewLocation, nil, nil)
         if err != nil {
                 fmt.Println(err)
@@ -164,7 +164,7 @@ func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey s
         }
 
 	// Copy the object
-	_, err := minioClient.CopyObject(dst, src)
+	_, err = minioClient.CopyObject(dst, src)
 	if err != nil {
 		return err
 	}
