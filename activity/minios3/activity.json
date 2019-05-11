@@ -35,7 +35,7 @@
             "required": false
         },
         {
-            "name": "useSSl",
+            "name": "useSsl",
             "type": "bool",
             "required": true
         },
