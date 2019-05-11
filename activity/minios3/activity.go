@@ -16,7 +16,7 @@ const (
 	ivS3Endpoint         = "s3Endpoint"
 	ivAwsAccessKeyID     = "awsAccessKeyID"
 	ivAwsSecretAccessKey = "awsSecretAccessKey"
-	ivUseSSL             = "useSsl"
+	ivUseSsl             = "useSsl"
 	ivAwsRegion          = "awsRegion"
 	ivS3BucketName       = "s3BucketName"
 	ivLocalLocation      = "localLocation"
@@ -105,7 +105,7 @@ func downloadFileFromS3(s3Endpoint string, awsAccessKeyID string, awsSecretAcces
 	}
 
 	// Download the file to disk
-        _, err = minioClient.FGetObject(s3BucketName, filepath.Join(directory, s3Location), minio.GetObjectOptions{})
+        err = minioClient.FGetObject(s3BucketName, s3Location, filepath.Join(directory, s3Location), minio.GetObjectOptions{})
 	if err != nil {
 		return err
 	}
@@ -157,11 +157,7 @@ func copyFileOnS3(s3Endpoint string, awsAccessKeyID string, awsSecretAccessKey s
 
 	// Prepare the copy object
         src := minio.NewSourceInfo(s3BucketName, s3BucketName, nil)
-        dst, err := minio.NewDestinationInfo(s3BucketName, s3NewLocation, nil, nil)
-        if err != nil {
-                fmt.Println(err)
-                return
-        }
+        dst := minio.NewDestinationInfo(s3BucketName, s3NewLocation, nil, nil)
 
 	// Copy the object
 	_, err = minioClient.CopyObject(dst, src)
