@@ -16,7 +16,7 @@ const (
 	ivS3Endpoint         = "s3Endpoint"
 	ivAwsAccessKeyID     = "awsAccessKeyID"
 	ivAwsSecretAccessKey = "awsSecretAccessKey"
-	ivUseSSL             = "useSSl"
+	ivUseSSL             = "useSsl"
 	ivAwsRegion          = "awsRegion"
 	ivS3BucketName       = "s3BucketName"
 	ivLocalLocation      = "localLocation"
@@ -50,7 +50,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	action := context.GetInput(ivAction).(string)
 	s3Endpoint := context.GetInput(ivS3Endpoint).(string)
 	awsRegion := context.GetInput(ivAwsRegion).(string)
-	useSSl := context.GetInput(ivUseSSl).(bool)
+	useSsl := context.GetInput(ivUseSsl).(bool)
 	s3BucketName := context.GetInput(ivS3BucketName).(string)
 	// localLocation is a file when uploading a file or a directory when downloading a file
 	localLocation := context.GetInput(ivLocalLocation).(string)

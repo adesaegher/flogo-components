@@ -46,7 +46,7 @@ Inputs and Outputs:
             "required": true
         },
         {
-            "name": "useSSl",
+            "name": "useSsl",
             "type": "bool",
             "required": true
         },
@@ -89,7 +89,7 @@ Inputs and Outputs:
 | s3Endpoint         | Your Minio S3 Endpoint |
 | awsAccessKeyID     | Your AWS Access Key (only needed if you don't give your Lambda function rights to invoke S3 reads and puts) |
 | awsSecretAccessKey | Your AWS Secret Key (only needed if you don't give your Lambda function rights to invoke S3 reads and puts) |
-| useSSl             | Use SSl |
+| useSsl             | Use ssl |
 | awsRegion          | The AWS region your S3 bucket is in |
 | s3BucketName       | The name of your S3 bucket |
 | s3Location         | The file location on S3, this should be a full path (like `/bla/temp.txt`) |
