@@ -5,7 +5,7 @@
     "version": "0.3.0",
     "title": "Minio S3",
     "description": "Upload or Download files from Minio Simple Storage Service (S3)",
-    "author": "retgits",
+    "author": "adesaegher",
     "homepage": "https://github.com/adesaegher/flogo-components/tree/master/activity/minios3",
     "inputs": [
         {
