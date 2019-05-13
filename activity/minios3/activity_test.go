@@ -51,7 +51,7 @@ func TestEvalDownload(t *testing.T) {
 
 	//setup attrs
 	tc.SetInput("action", "download")
-	tc.SetInput("s3Endpoint", "127.0.0.1:9000")
+	tc.SetInput("s3Endpoint", "192.168.0.31:9000")
 	tc.SetInput("awsAccessKeyID", "")
 	tc.SetInput("awsSecretAccessKey", "")
 	tc.SetInput("awsRegion", "")
@@ -80,14 +80,14 @@ func TestEvalUpload(t *testing.T) {
 
 	//setup attrs
 	tc.SetInput("action", "upload")
-	tc.SetInput("s3Endpoint", "127.0.0.1:9000")
+	tc.SetInput("s3Endpoint", "192.168.0.31:9000")
 	tc.SetInput("awsAccessKeyID", "")
 	tc.SetInput("awsSecretAccessKey", "")
 	tc.SetInput("awsRegion", "")
 	tc.SetInput("useSsl", false)
 	tc.SetInput("s3BucketName", "test")
-	tc.SetInput("s3Location", "")
-	tc.SetInput("localLocation", "")
+	tc.SetInput("s3Location", "test")
+	tc.SetInput("localLocation", "test")
 	act.Eval(tc)
 
 	//check result attr
@@ -109,13 +109,13 @@ func TestEvalDelete(t *testing.T) {
 
 	//setup attrs
 	tc.SetInput("action", "delete")
-	tc.SetInput("s3Endpoint", "127.0.0.1:9000")
+	tc.SetInput("s3Endpoint", "192.168.0.31:9000")
 	tc.SetInput("awsAccessKeyID", "")
 	tc.SetInput("awsSecretAccessKey", "")
 	tc.SetInput("awsRegion", "")
 	tc.SetInput("useSsl", false)
 	tc.SetInput("s3BucketName", "test")
-	tc.SetInput("s3Location", "")
+	tc.SetInput("s3Location", "test")
 	act.Eval(tc)
 
 	//check result attr
