@@ -57,8 +57,8 @@ func TestEvalDownload(t *testing.T) {
 	tc.SetInput("awsRegion", "")
 	tc.SetInput("useSsl", false)
 	tc.SetInput("s3BucketName", "test")
-	tc.SetInput("s3Location", "")
-	tc.SetInput("localLocation", "")
+	tc.SetInput("s3Location", "test")
+	tc.SetInput("localLocation", "test")
 	act.Eval(tc)
 
 	//check result attr
