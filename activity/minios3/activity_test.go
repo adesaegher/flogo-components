@@ -58,7 +58,7 @@ func TestEvalDownload(t *testing.T) {
 	tc.SetInput("useSsl", false)
 	tc.SetInput("s3BucketName", "test")
 	tc.SetInput("s3Location", "test")
-	tc.SetInput("localLocation", "test")
+	tc.SetInput("localLocation", "README.md")
 	act.Eval(tc)
 
 	//check result attr
@@ -87,7 +87,7 @@ func TestEvalUpload(t *testing.T) {
 	tc.SetInput("useSsl", false)
 	tc.SetInput("s3BucketName", "test")
 	tc.SetInput("s3Location", "test")
-	tc.SetInput("localLocation", "test")
+	tc.SetInput("localLocation", "README.md")
 	act.Eval(tc)
 
 	//check result attr
