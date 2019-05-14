@@ -6,7 +6,7 @@ Upload or Download files from Minio Simple Storage Service (S3)
 ## Installation
 
 ```bash
-flogo install github.com/adesaeher/flogo-components/activity/minios3
+flogo install github.com/adesaegher/flogo-components/activity/minios3
 ```
 Link for flogo web:
 ```
