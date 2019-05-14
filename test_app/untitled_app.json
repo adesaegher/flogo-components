@@ -1,0 +1,77 @@
+{
+  "name": "Untitled App",
+  "type": "flogo:app",
+  "version": "0.0.1",
+  "appModel": "1.1.0",
+  "description": "",
+  "imports": [
+    "github.com/adesaegher/flogo-components/activity/minios3",
+    "github.com/project-flogo/contrib/trigger/rest",
+    "github.com/project-flogo/flow"
+  ],
+  "triggers": [
+    {
+      "id": "receive_http_message",
+      "ref": "#rest",
+      "name": "Receive HTTP Message",
+      "description": "Simple REST Trigger",
+      "settings": {
+        "port": 8080
+      },
+      "handlers": [
+        {
+          "settings": {
+            "method": "GET",
+            "path": "/trigger"
+          },
+          "action": {
+            "ref": "#flow",
+            "settings": {
+              "flowURI": "res://flow:testflow"
+            },
+            "input": {
+              "test": "=$.queryParams"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "flow:testflow",
+      "data": {
+        "name": "testflow",
+        "metadata": {
+          "input": [
+            {
+              "name": "test",
+              "type": "string"
+            }
+          ]
+        },
+        "tasks": [
+          {
+            "id": "minios3_2",
+            "name": "Minio S3",
+            "description": "Upload or Download files from Minio Simple Storage Service (S3)",
+            "activity": {
+              "ref": "#minios3",
+              "input": {
+                "useSsl": false,
+                "action": "download",
+                "awsAccessKeyID": "key",
+                "awsSecretAccessKey": "secret",
+                "awsRegion": "us-east-1",
+                "s3BucketName": "testbucket",
+                "s3Endpoint": "127.0.0.1:9000",
+                "s3Location": "test",
+                "localLocation": "./test"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
