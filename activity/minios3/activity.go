@@ -46,7 +46,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	action := context.GetInput(ivAction).(string)
 	s3Endpoint := context.GetInput(ivS3Endpoint).(string)
 	awsRegion := context.GetInput(ivAwsRegion).(string)
-	useSsl := context.GetInput(ivUseSsl).(bool)
+	useSsl := toBool(context.GetInput(ivUseSsl))
 	s3BucketName := context.GetInput(ivS3BucketName).(string)
 	// localLocation is a file when uploading a file or a directory when downloading a file
 	localLocation := context.GetInput(ivLocalLocation).(string)
