@@ -2,6 +2,7 @@
 package minios3
 
 import (
+	"context"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/minio/minio-go"
